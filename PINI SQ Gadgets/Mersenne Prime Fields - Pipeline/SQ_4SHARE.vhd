@@ -1,68 +1,69 @@
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.NUMERIC_STD.ALL;
 
 entity SQ_4SHARE is
     Generic (bits : INTEGER := 7);
     Port ( clk : in STD_LOGIC;
-           a0 : in STD_LOGIC_VECTOR (bits-1 downto 0);
-           a1 : in STD_LOGIC_VECTOR (bits-1 downto 0);
-           a2 : in STD_LOGIC_VECTOR (bits-1 downto 0);
-           a3 : in STD_LOGIC_VECTOR (bits-1 downto 0);
-           r0 : in STD_LOGIC_VECTOR (bits-1 downto 0);
-           r1 : in STD_LOGIC_VECTOR (bits-1 downto 0);
-           r2 : in STD_LOGIC_VECTOR (bits-1 downto 0);
-           r3 : in STD_LOGIC_VECTOR (bits-1 downto 0);
-           r4 : in STD_LOGIC_VECTOR (bits-1 downto 0);
-           r5 : in STD_LOGIC_VECTOR (bits-1 downto 0);
-           r6 : in STD_LOGIC_VECTOR (bits-1 downto 0);
-           r7 : in STD_LOGIC_VECTOR (bits-1 downto 0);
-           r8 : in STD_LOGIC_VECTOR (bits-1 downto 0);
-           r9 : in STD_LOGIC_VECTOR (bits-1 downto 0);
-           r10 : in STD_LOGIC_VECTOR (bits-1 downto 0);
-           r11 : in STD_LOGIC_VECTOR (bits-1 downto 0);
-           b0 : out STD_LOGIC_VECTOR (bits-1 downto 0);
-           b1 : out STD_LOGIC_VECTOR (bits-1 downto 0);
-           b2 : out STD_LOGIC_VECTOR (bits-1 downto 0);
-           b3 : out STD_LOGIC_VECTOR (bits-1 downto 0));
+           a0 : in UNSIGNED (bits-1 downto 0);
+           a1 : in UNSIGNED (bits-1 downto 0);
+           a2 : in UNSIGNED (bits-1 downto 0);
+           a3 : in UNSIGNED (bits-1 downto 0);
+           r0 : in UNSIGNED (bits-1 downto 0);
+           r1 : in UNSIGNED (bits-1 downto 0);
+           r2 : in UNSIGNED (bits-1 downto 0);
+           r3 : in UNSIGNED (bits-1 downto 0);
+           r4 : in UNSIGNED (bits-1 downto 0);
+           r5 : in UNSIGNED (bits-1 downto 0);
+           r6 : in UNSIGNED (bits-1 downto 0);
+           r7 : in UNSIGNED (bits-1 downto 0);
+           r8 : in UNSIGNED (bits-1 downto 0);
+           r9 : in UNSIGNED (bits-1 downto 0);
+           r10 : in UNSIGNED (bits-1 downto 0);
+           r11 : in UNSIGNED (bits-1 downto 0);
+           b0 : out UNSIGNED (bits-1 downto 0);
+           b1 : out UNSIGNED (bits-1 downto 0);
+           b2 : out UNSIGNED (bits-1 downto 0);
+           b3 : out UNSIGNED (bits-1 downto 0));
 end SQ_4SHARE;
 
 architecture Behavioral of SQ_4SHARE is
 
     component AddModMersenne is
         Generic ( bits : INTEGER := 7);
-        Port ( a : in STD_LOGIC_VECTOR (bits-1 downto 0);
-               b : in STD_LOGIC_VECTOR (bits-1 downto 0);
-               c : out STD_LOGIC_VECTOR (bits-1 downto 0));
+        Port ( a : in UNSIGNED (bits-1 downto 0);
+               b : in UNSIGNED (bits-1 downto 0);
+               c : out UNSIGNED (bits-1 downto 0));
     end component;
     
     component SubModMersenne is
         Generic ( bits : INTEGER := 7);
-        Port ( a : in STD_LOGIC_VECTOR (bits-1 downto 0);
-               b : in STD_LOGIC_VECTOR (bits-1 downto 0);
-               c : out STD_LOGIC_VECTOR (bits-1 downto 0));
+        Port ( a : in UNSIGNED (bits-1 downto 0);
+               b : in UNSIGNED (bits-1 downto 0);
+               c : out UNSIGNED (bits-1 downto 0));
     end component;
     
     component MulModMersenne is
         Generic (bits : INTEGER := 7);
-        Port ( a : in STD_LOGIC_VECTOR (bits-1 downto 0);
-               b : in STD_LOGIC_VECTOR (bits-1 downto 0);
-               c : out STD_LOGIC_VECTOR (bits-1 downto 0));
+        Port ( a : in UNSIGNED (bits-1 downto 0);
+               b : in UNSIGNED (bits-1 downto 0);
+               c : out UNSIGNED (bits-1 downto 0));
     end component;
                    
     component SquModMersenne is
         Generic (bits : INTEGER := 7);
-        Port ( a : in STD_LOGIC_VECTOR (bits-1 downto 0);
-              b : out STD_LOGIC_VECTOR (bits-1 downto 0));
+        Port ( a : in UNSIGNED (bits-1 downto 0);
+              b : out UNSIGNED (bits-1 downto 0));
     end component;
     
     component FF is
         Generic ( bits : INTEGER := 7);
         Port ( clk : in STD_LOGIC;
-               input : in STD_LOGIC_VECTOR ((bits-1) downto 0);
-               output : out STD_LOGIC_VECTOR ((bits-1) downto 0));
+               input : in UNSIGNED ((bits-1) downto 0);
+               output : out UNSIGNED ((bits-1) downto 0));
     end component;
     
-    signal a02, a12, a22, a32, a12r0, a22r1, a32r2, a22r3, a32r4, a32r5, r0r1, r0s, a0r0s, r1s, a1r1s, a2r2s, a0_r, a1_r, a2_r, a3_r, r6_r, r7_r, r8_r, r9_r, r10_r, r11_r, a12r0_r, a22r1_r, a32r2_r, a22r3_r, a32r4_r, a32r5_r, a0r0s_r, a1r1s_r, a2r2s_r, a3r3s_r, a0r0sa0, a1r1sa1, a2r2sa2, a3r3sa3, a12r0a0, a22r1a0, a32r2a0, a22r3a1, a32r4a1, a32r5a2, a12r0a0r6, a22r1a0r7, a32r2a0r8, a22r3a1r9, a32r4a1r10, a32r5a2r11, r6_rr, r7_rr, r8_rr, r9_rr, r10_rr, r11_rr, a12r0a0r6_rr, a22r1a0r7_rr, a32r2a0r8_rr, a22r3a1r9_rr, a32r4a1r10_rr, a32r5a2r11_rr, a0r0sa0_rr, a1r1sa1_rr, a2r2sa2_rr, a3r3sa3_rr, a0r0sa0a12r0a0r6, a22r1a0r7a32r2a0r8, a1r1sa1a22r3a1r9, a32r4a1r10r6, a2r2sa2a32r5a2r11, r7r8, a3r3sa3r9, r10r11 : STD_LOGIC_VECTOR (bits-1 downto 0);
+    signal a02, a12, a22, a32, a12r0, a22r1, a32r2, a22r3, a32r4, a32r5, r0r1, r0s, a0r0s, r1s, a1r1s, a2r2s, a0_r, a1_r, a2_r, a3_r, r6_r, r7_r, r8_r, r9_r, r10_r, r11_r, a12r0_r, a22r1_r, a32r2_r, a22r3_r, a32r4_r, a32r5_r, a0r0s_r, a1r1s_r, a2r2s_r, a3r3s_r, a0r0sa0, a1r1sa1, a2r2sa2, a3r3sa3, a12r0a0, a22r1a0, a32r2a0, a22r3a1, a32r4a1, a32r5a2, a12r0a0r6, a22r1a0r7, a32r2a0r8, a22r3a1r9, a32r4a1r10, a32r5a2r11, r6_rr, r7_rr, r8_rr, r9_rr, r10_rr, r11_rr, a12r0a0r6_rr, a22r1a0r7_rr, a32r2a0r8_rr, a22r3a1r9_rr, a32r4a1r10_rr, a32r5a2r11_rr, a0r0sa0_rr, a1r1sa1_rr, a2r2sa2_rr, a3r3sa3_rr, a0r0sa0a12r0a0r6, a22r1a0r7a32r2a0r8, a1r1sa1a22r3a1r9, a32r4a1r10r6, a2r2sa2a32r5a2r11, r7r8, a3r3sa3r9, r10r11 : UNSIGNED (bits-1 downto 0);
     
 begin
     

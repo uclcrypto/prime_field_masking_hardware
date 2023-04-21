@@ -1,53 +1,54 @@
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.NUMERIC_STD.ALL;
 
 entity SQ_3SHARE is
     Generic (bits : INTEGER := 7);
     Port ( clk : in STD_LOGIC;
-           a0 : in STD_LOGIC_VECTOR (bits-1 downto 0);
-           a1 : in STD_LOGIC_VECTOR (bits-1 downto 0);
-           a2 : in STD_LOGIC_VECTOR (bits-1 downto 0);
-           r0 : in STD_LOGIC_VECTOR (bits-1 downto 0);
-           r1 : in STD_LOGIC_VECTOR (bits-1 downto 0);
-           r2 : in STD_LOGIC_VECTOR (bits-1 downto 0);
-           r3 : in STD_LOGIC_VECTOR (bits-1 downto 0);
-           r4 : in STD_LOGIC_VECTOR (bits-1 downto 0);
-           b0 : out STD_LOGIC_VECTOR (bits-1 downto 0);
-           b1 : out STD_LOGIC_VECTOR (bits-1 downto 0);
-           b2 : out STD_LOGIC_VECTOR (bits-1 downto 0));
+           a0 : in UNSIGNED (bits-1 downto 0);
+           a1 : in UNSIGNED (bits-1 downto 0);
+           a2 : in UNSIGNED (bits-1 downto 0);
+           r0 : in UNSIGNED (bits-1 downto 0);
+           r1 : in UNSIGNED (bits-1 downto 0);
+           r2 : in UNSIGNED (bits-1 downto 0);
+           r3 : in UNSIGNED (bits-1 downto 0);
+           r4 : in UNSIGNED (bits-1 downto 0);
+           b0 : out UNSIGNED (bits-1 downto 0);
+           b1 : out UNSIGNED (bits-1 downto 0);
+           b2 : out UNSIGNED (bits-1 downto 0));
 end SQ_3SHARE;
 
 architecture Behavioral of SQ_3SHARE is
 
     component AddModMersenne is
         Generic ( bits : INTEGER := 7);
-        Port ( a : in STD_LOGIC_VECTOR (bits-1 downto 0);
-               b : in STD_LOGIC_VECTOR (bits-1 downto 0);
-               c : out STD_LOGIC_VECTOR (bits-1 downto 0));
+        Port ( a : in UNSIGNED (bits-1 downto 0);
+               b : in UNSIGNED (bits-1 downto 0);
+               c : out UNSIGNED (bits-1 downto 0));
     end component;
     
     component SubModMersenne is
         Generic ( bits : INTEGER := 7);
-        Port ( a : in STD_LOGIC_VECTOR (bits-1 downto 0);
-               b : in STD_LOGIC_VECTOR (bits-1 downto 0);
-               c : out STD_LOGIC_VECTOR (bits-1 downto 0));
+        Port ( a : in UNSIGNED (bits-1 downto 0);
+               b : in UNSIGNED (bits-1 downto 0);
+               c : out UNSIGNED (bits-1 downto 0));
     end component;
     
     component MulModMersenne is
         Generic (bits : INTEGER := 7);
-        Port ( a : in STD_LOGIC_VECTOR (bits-1 downto 0);
-               b : in STD_LOGIC_VECTOR (bits-1 downto 0);
-               c : out STD_LOGIC_VECTOR (bits-1 downto 0));
+        Port ( a : in UNSIGNED (bits-1 downto 0);
+               b : in UNSIGNED (bits-1 downto 0);
+               c : out UNSIGNED (bits-1 downto 0));
     end component;
     
     component FF is
         Generic ( bits : INTEGER := 7);
         Port ( clk : in STD_LOGIC;
-               input : in STD_LOGIC_VECTOR ((bits-1) downto 0);
-               output : out STD_LOGIC_VECTOR ((bits-1) downto 0));
+               input : in UNSIGNED ((bits-1) downto 0);
+               output : out UNSIGNED ((bits-1) downto 0));
     end component;
     
-    signal r3r4, r5, a02, a12, a22, a12r0, a22r1, a02r2, a0r0, a1r1, a2r2, a0r0a0, a1r1a1, a2r2a2, a0r0a0r3, a1r1a1r4, a2r2a2r5, a0_r, a1_r, a2_r, a12r0_r, a22r1_r, a02r2_r, a0r0a0r3_r, a1r1a1r4_r, a2r2a2r5_r, a12r0a0, a22r1a1, a02r2a2 : STD_LOGIC_VECTOR (bits-1 downto 0);
+    signal r3r4, r5, a02, a12, a22, a12r0, a22r1, a02r2, a0r0, a1r1, a2r2, a0r0a0, a1r1a1, a2r2a2, a0r0a0r3, a1r1a1r4, a2r2a2r5, a0_r, a1_r, a2_r, a12r0_r, a22r1_r, a02r2_r, a0r0a0r3_r, a1r1a1r4_r, a2r2a2r5_r, a12r0a0, a22r1a1, a02r2a2 : UNSIGNED (bits-1 downto 0);
     
 begin
     

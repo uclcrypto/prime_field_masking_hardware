@@ -1,64 +1,65 @@
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.NUMERIC_STD.ALL;
 
 entity HPC1_4SHARE is
     Generic ( bits : INTEGER := 7);
     Port ( clk : in STD_LOGIC;
-           a0 : in STD_LOGIC_VECTOR (bits-1 downto 0);
-           a1 : in STD_LOGIC_VECTOR (bits-1 downto 0);
-           a2 : in STD_LOGIC_VECTOR (bits-1 downto 0);
-           a3 : in STD_LOGIC_VECTOR (bits-1 downto 0);
-           b0 : in STD_LOGIC_VECTOR (bits-1 downto 0);
-           b1 : in STD_LOGIC_VECTOR (bits-1 downto 0);
-           b2 : in STD_LOGIC_VECTOR (bits-1 downto 0);
-           b3 : in STD_LOGIC_VECTOR (bits-1 downto 0);
-           r0 : in STD_LOGIC_VECTOR (bits-1 downto 0);
-           r1 : in STD_LOGIC_VECTOR (bits-1 downto 0);
-           r2 : in STD_LOGIC_VECTOR (bits-1 downto 0);
-           r3 : in STD_LOGIC_VECTOR (bits-1 downto 0);
-           r4 : in STD_LOGIC_VECTOR (bits-1 downto 0);
-           r5 : in STD_LOGIC_VECTOR (bits-1 downto 0);
-           r6 : in STD_LOGIC_VECTOR (bits-1 downto 0);
-           r7 : in STD_LOGIC_VECTOR (bits-1 downto 0);
-           r8 : in STD_LOGIC_VECTOR (bits-1 downto 0);
-           r9 : in STD_LOGIC_VECTOR (bits-1 downto 0);
-           c0 : out STD_LOGIC_VECTOR (bits-1 downto 0);
-           c1 : out STD_LOGIC_VECTOR (bits-1 downto 0);
-           c2 : out STD_LOGIC_VECTOR (bits-1 downto 0);
-           c3 : out STD_LOGIC_VECTOR (bits-1 downto 0));
+           a0 : in UNSIGNED (bits-1 downto 0);
+           a1 : in UNSIGNED (bits-1 downto 0);
+           a2 : in UNSIGNED (bits-1 downto 0);
+           a3 : in UNSIGNED (bits-1 downto 0);
+           b0 : in UNSIGNED (bits-1 downto 0);
+           b1 : in UNSIGNED (bits-1 downto 0);
+           b2 : in UNSIGNED (bits-1 downto 0);
+           b3 : in UNSIGNED (bits-1 downto 0);
+           r0 : in UNSIGNED (bits-1 downto 0);
+           r1 : in UNSIGNED (bits-1 downto 0);
+           r2 : in UNSIGNED (bits-1 downto 0);
+           r3 : in UNSIGNED (bits-1 downto 0);
+           r4 : in UNSIGNED (bits-1 downto 0);
+           r5 : in UNSIGNED (bits-1 downto 0);
+           r6 : in UNSIGNED (bits-1 downto 0);
+           r7 : in UNSIGNED (bits-1 downto 0);
+           r8 : in UNSIGNED (bits-1 downto 0);
+           r9 : in UNSIGNED (bits-1 downto 0);
+           c0 : out UNSIGNED (bits-1 downto 0);
+           c1 : out UNSIGNED (bits-1 downto 0);
+           c2 : out UNSIGNED (bits-1 downto 0);
+           c3 : out UNSIGNED (bits-1 downto 0));
 end HPC1_4SHARE;
 
 architecture Behavioral of HPC1_4SHARE is
 
     component AddModMersenne is
         Generic ( bits : INTEGER := 7);
-        Port ( a : in STD_LOGIC_VECTOR (bits-1 downto 0);
-               b : in STD_LOGIC_VECTOR (bits-1 downto 0);
-               c : out STD_LOGIC_VECTOR (bits-1 downto 0));
+        Port ( a : in UNSIGNED (bits-1 downto 0);
+               b : in UNSIGNED (bits-1 downto 0);
+               c : out UNSIGNED (bits-1 downto 0));
     end component;
     
     component SubModMersenne is
         Generic ( bits : INTEGER := 7);
-        Port ( a : in STD_LOGIC_VECTOR (bits-1 downto 0);
-               b : in STD_LOGIC_VECTOR (bits-1 downto 0);
-               c : out STD_LOGIC_VECTOR (bits-1 downto 0));
+        Port ( a : in UNSIGNED (bits-1 downto 0);
+               b : in UNSIGNED (bits-1 downto 0);
+               c : out UNSIGNED (bits-1 downto 0));
     end component;
     
     component MulModMersenne is
         Generic (bits : INTEGER := 7);
-        Port ( a : in STD_LOGIC_VECTOR (bits-1 downto 0);
-               b : in STD_LOGIC_VECTOR (bits-1 downto 0);
-               c : out STD_LOGIC_VECTOR (bits-1 downto 0));
+        Port ( a : in UNSIGNED (bits-1 downto 0);
+               b : in UNSIGNED (bits-1 downto 0);
+               c : out UNSIGNED (bits-1 downto 0));
     end component;
     
     component FF is
         Generic ( bits : INTEGER := 7);
         Port ( clk : in STD_LOGIC;
-               input : in STD_LOGIC_VECTOR ((bits-1) downto 0);
-               output : out STD_LOGIC_VECTOR ((bits-1) downto 0));
+               input : in UNSIGNED ((bits-1) downto 0);
+               output : out UNSIGNED ((bits-1) downto 0));
     end component;
     
-    signal b0r6, b0r6r9, b1r7, b1r7r6, b2r8, b2r8r7, b3r9, b3r9r8, b0r6r9_r, b1r7r6_r, b2r8r7_r, b3r9r8_r, a0b0, a0b1, a0b2, a0b3, a1b0, a1b1, a1b2, a1b3, a2b0, a2b1, a2b2, a2b3, a3b0, a3b1, a3b2, a3b3, a0b1r0, a0b2r1, a0b3r3, a1b0r0, a1b2r2, a1b3r4, a2b0r1, a2b1r2, a2b3r5, a3b0r3, a3b1r4, a3b2r5, a0b1r0_r, a0b2r1_r, a0b3r3_r, a1b0r0_r, a1b2r2_r, a1b3r4_r, a2b0r1_r, a2b1r2_r, a2b3r5_r, a3b0r3_r, a3b1r4_r, a3b2r5_r, a0b0a0b1r0, a0b0a0b1r0a0b2r1, a1b1a1b0r0, a1b1a1b0r0a1b2r2, a2b2a2b0r1, a2b2a2b0r1a2b1r2, a3b3a3b0r3, a3b3a3b0r3a3b1r4 : STD_LOGIC_VECTOR (bits-1 downto 0);
+    signal b0r6, b0r6r9, b1r7, b1r7r6, b2r8, b2r8r7, b3r9, b3r9r8, b0r6r9_r, b1r7r6_r, b2r8r7_r, b3r9r8_r, a0b0, a0b1, a0b2, a0b3, a1b0, a1b1, a1b2, a1b3, a2b0, a2b1, a2b2, a2b3, a3b0, a3b1, a3b2, a3b3, a0b1r0, a0b2r1, a0b3r3, a1b0r0, a1b2r2, a1b3r4, a2b0r1, a2b1r2, a2b3r5, a3b0r3, a3b1r4, a3b2r5, a0b1r0_r, a0b2r1_r, a0b3r3_r, a1b0r0_r, a1b2r2_r, a1b3r4_r, a2b0r1_r, a2b1r2_r, a2b3r5_r, a3b0r3_r, a3b1r4_r, a3b2r5_r, a0b0a0b1r0, a0b0a0b1r0a0b2r1, a1b1a1b0r0, a1b1a1b0r0a1b2r2, a2b2a2b0r1, a2b2a2b0r1a2b1r2, a3b3a3b0r3, a3b3a3b0r3a3b1r4 : UNSIGNED (bits-1 downto 0);
     
 begin
 
