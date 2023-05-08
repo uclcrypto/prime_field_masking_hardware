@@ -81,8 +81,8 @@ architecture Behavioral of SBOX_4SHARE is
                output : out UNSIGNED ((bits-1) downto 0));
     end component;
     
-    signal a02, a12, a22, a32, a12r0, a22r1, a32r2, a22r3, a32r4, a32r5, r0r1, r0s, a0r0s, r1s, a1r1s, a2r2s, a0_r, a1_r, a2_r, a3_r, r6_r, r7_r, r8_r, r9_r, r10_r, r11_r, r12_r, r13_r, r14_r, r15_r, r16_r, r17_r, r18_r, r19_r, r20_r, r21_r, r22_r, r23_r, r24_r, r25_r, r26_r, r27_r, r28_r, r29_r, a12r0_r, a22r1_r, a32r2_r, a22r3_r, a32r4_r, a32r5_r, a0r0s_r, a1r1s_r, a2r2s_r, a0r0sa0, a1r1sa1, a2r2sa2, a3r3sa3, a12r0a0, a22r1a0, a32r2a0, a22r3a1, a32r4a1, a32r5a2, a12r0a0r6, a22r1a0r7, a32r2a0r8, a22r3a1r9, a32r4a1r10, a32r5a2r11, a0_rr, a1_rr, a2_rr, a3_rr, r6_rr, r7_rr, r8_rr, r9_rr, r10_rr, r11_rr, r12_rr, r13_rr, r14_rr, r15_rr, r16_rr, r17_rr, r18_rr, r19_rr, r20_rr, r21_rr, r22_rr, r23_rr, r24_rr, r25_rr, r26_rr, r27_rr, r28_rr, r29_rr, a12r0a0r6_rr, a22r1a0r7_rr, a32r2a0r8_rr, a22r3a1r9_rr, a32r4a1r10_rr, a32r5a2r11_rr, a0r0sa0_rr, a1r1sa1_rr, a2r2sa2_rr, a3r3sa3_rr, a0r0sa0a12r0a0r6, a22r1a0r7a32r2a0r8, b0_rr, a1r1sa1a22r3a1r9, a32r4a1r10r6, b1_rr, a2r2sa2a32r5a2r11, r7r8, b2_rr, a3r3sa3r9, r10r11, b3_rr: UNSIGNED (bits-1 downto 0);
-    signal b02, b12, b22, b32, b12r12, b22r13, b32r14, b22r15, b32r16, b32r17, r12r13, r4s, b0r4s, r5s, b1r5s, b2r6s, a0_rrr, a1_rrr, a2_rrr, a3_rrr, r18_rrr, r19_rrr, r20_rrr, r21_rrr, r22_rrr, r23_rrr, r24_rrr, r25_rrr, r26_rrr, r27_rrr, r28_rrr, r29_rrr, b12r12_rrr, b22r13_rrr, b32r14_rrr, b22r15_rrr, b32r16_rrr, b32r17_rrr, b0r4s_rrr, b1r5s_rrr, b2r6s_rrr, b0r4sb0, b1r5sb1, b2r6sb2, b3r7sb3, b12r12b0, b22r13b0, b32r14b0, b22r15b1, b32r16b1, b32r17b2, b12r12b0r18, b22r13b0r19, b32r14b0r20, b22r15b1r21, b32r16b1r22, b32r17b2r23, a0_rrrr, a1_rrrr, a2_rrrr, a3_rrrr, b0_rrr, b1_rrr, b2_rrr, b3_rrr, r18_rrrr, r19_rrrr, r20_rrrr, r21_rrrr, r22_rrrr, r23_rrrr, r24_rrrr, r25_rrrr, r26_rrrr, r27_rrrr, r28_rrrr, r29_rrrr, b12r12b0r18_rrrr, b22r13b0r19_rrrr, b32r14b0r20_rrrr, b22r15b1r21_rrrr, b32r16b1r22_rrrr, b32r17b2r23_rrrr, b0r4sb0_rrrr, b1r5sb1_rrrr, b2r6sb2_rrrr, b3r7sb3_rrrr, b0r4sb0b12r12b0r18, b22r13b0r19b32r14b0r20, c0_rrrr, b1r5sb1b22r15b1r21, b32r16b1r22r18, c1_rrrr, b2r6sb2b32r17b2r23, r19r20, c2_rrrr, b3r7sb3r21, r22r23, c3_rrrr : UNSIGNED (bits-1 downto 0);
+    signal a02, a12, a22, a32, a12r0, a22r1, a32r2, a22r3, a32r4, a32r5, r0r1, r0s, a0r0s, r1s, a1r1s, a2r2s, a0_r, a1_r, a2_r, a3_r, r6_r, r7_r, r8_r, r9_r, r10_r, r11_r, r12_r, r13_r, r14_r, r15_r, r16_r, r17_r, r18_r, r19_r, r20_r, r21_r, r22_r, r23_r, r24_r, r25_r, r26_r, r27_r, r28_r, r29_r, a12r0_r, a22r1_r, a32r2_r, a22r3_r, a32r4_r, a32r5_r, a0r0s_r, a1r1s_r, a2r2s_r, a0r0sa0, a1r1sa1, a2r2sa2, a3r3sa3, a12r0a0, a22r1a0, a32r2a0, a22r3a1, a32r4a1, a32r5a2, a12r0a0r6, a22r1a0r7, a32r2a0r8, a22r3a1r9, a32r4a1r10, a32r5a2r11, a0_rr, a1_rr, a2_rr, a3_rr, r6_rr, r7_rr, r8_rr, r9_rr, r10_rr, r11_rr, r12_rr, r13_rr, r14_rr, r15_rr, r16_rr, r17_rr, r18_rr, r19_rr, r20_rr, r21_rr, r22_rr, r23_rr, r24_rr, r25_rr, r26_rr, r27_rr, r28_rr, r29_rr, a12r0a0r6_rr, a22r1a0r7_rr, a32r2a0r8_rr, a22r3a1r9_rr, a32r4a1r10_rr, a32r5a2r11_rr, a0r0sa0_rr, a1r1sa1_rr, a2r2sa2_rr, a3r3sa3_rr, a0r0sa0a12r0a0r6, a22r1a0r7a32r2a0r8, b0_rr, a1r1sa1a22r3a1r9, a32r4a1r10r6, b1_rr, a2r2sa2a32r5a2r11, r7r9, b2_rr, a3r3sa3r8, r10r11, b3_rr: UNSIGNED (bits-1 downto 0);
+    signal b02, b12, b22, b32, b12r12, b22r13, b32r14, b22r15, b32r16, b32r17, r12r13, r4s, b0r4s, r5s, b1r5s, b2r6s, a0_rrr, a1_rrr, a2_rrr, a3_rrr, r18_rrr, r19_rrr, r20_rrr, r21_rrr, r22_rrr, r23_rrr, r24_rrr, r25_rrr, r26_rrr, r27_rrr, r28_rrr, r29_rrr, b12r12_rrr, b22r13_rrr, b32r14_rrr, b22r15_rrr, b32r16_rrr, b32r17_rrr, b0r4s_rrr, b1r5s_rrr, b2r6s_rrr, b0r4sb0, b1r5sb1, b2r6sb2, b3r7sb3, b12r12b0, b22r13b0, b32r14b0, b22r15b1, b32r16b1, b32r17b2, b12r12b0r18, b22r13b0r19, b32r14b0r20, b22r15b1r21, b32r16b1r22, b32r17b2r23, a0_rrrr, a1_rrrr, a2_rrrr, a3_rrrr, b0_rrr, b1_rrr, b2_rrr, b3_rrr, r18_rrrr, r19_rrrr, r20_rrrr, r21_rrrr, r22_rrrr, r23_rrrr, r24_rrrr, r25_rrrr, r26_rrrr, r27_rrrr, r28_rrrr, r29_rrrr, b12r12b0r18_rrrr, b22r13b0r19_rrrr, b32r14b0r20_rrrr, b22r15b1r21_rrrr, b32r16b1r22_rrrr, b32r17b2r23_rrrr, b0r4sb0_rrrr, b1r5sb1_rrrr, b2r6sb2_rrrr, b3r7sb3_rrrr, b0r4sb0b12r12b0r18, b22r13b0r19b32r14b0r20, c0_rrrr, b1r5sb1b22r15b1r21, b32r16b1r22r18, c1_rrrr, b2r6sb2b32r17b2r23, r19r21, c2_rrrr, b3r7sb3r20, r22r23, c3_rrrr : UNSIGNED (bits-1 downto 0);
     signal a0c0, a0c1, a0c2, a0c3, a1c0, a1c1, a1c2, a1c3, a2c0, a2c1, a2c2, a2c3, a3c0, a3c1, a3c2, a3c3, a0c1r24, a0c2r25, a0c3r27, a1c0r24, a1c2r26, a1c3r28, a2c0r25, a2c1r26, a2c3r29, a3c0r27, a3c1r28, a3c2r29, a0c0_rrrrr, a0c1r24_rrrrr, a0c2r25_rrrrr, a0c3r27_rrrrr, a1c0r24_rrrrr, a1c1_rrrrr, a1c2r26_rrrrr, a1c3r28_rrrrr, a2c0r25_rrrrr, a2c1r26_rrrrr, a2c2_rrrrr, a2c3r29_rrrrr, a3c0r27_rrrrr, a3c1r28_rrrrr, a3c2r29_rrrrr, a3c3_rrrrr, a0c0a0c1r24, a0c0a0c1r24a0c2r25, d0_rrrrr, a1c1a1c0r24, a1c1a1c0r24a1c2r26, d1_rrrrr, a2c2a2c0r25, a2c2a2c0r25a2c1r26, d2_rrrrr, a3c3a3c0r27, a3c3a3c0r27a3c1r28, d3_rrrrr, d0c : UNSIGNED (bits-1 downto 0);
     constant c : UNSIGNED (bits-1 downto 0) := (bits-1 downto 2 => '0') & "10";
 
@@ -206,11 +206,11 @@ begin
     Sub4 : SubModMersenne Generic Map (bits) Port Map (a32r4a1r10_rr, r6_rr, a32r4a1r10r6);
     Add20 : AddModMersenne Generic Map (bits) Port Map (a1r1sa1a22r3a1r9, a32r4a1r10r6, b1_rr);
     Add21 : AddModMersenne Generic Map (bits) Port Map (a2r2sa2_rr, a32r5a2r11_rr, a2r2sa2a32r5a2r11);
-    Add22 : AddModMersenne Generic Map (bits) Port Map (r7_rr, r8_rr, r7r8);
-    Sub5 : SubModMersenne Generic Map (bits) Port Map (a2r2sa2a32r5a2r11, r7r8, b2_rr);
-    Sub6 : SubModMersenne Generic Map (bits) Port Map (a3r3sa3_rr, r9_rr, a3r3sa3r9);
+    Add22 : AddModMersenne Generic Map (bits) Port Map (r7_rr, r9_rr, r7r9);
+    Sub5 : SubModMersenne Generic Map (bits) Port Map (a2r2sa2a32r5a2r11, r7r9, b2_rr);
+    Sub6 : SubModMersenne Generic Map (bits) Port Map (a3r3sa3_rr, r8_rr, a3r3sa3r8);
     Add23 : AddModMersenne Generic Map (bits) Port Map (r10_rr, r11_rr, r10r11);
-    Sub7 : SubModMersenne Generic Map (bits) Port Map (a3r3sa3r9, r10r11, b3_rr);
+    Sub7 : SubModMersenne Generic Map (bits) Port Map (a3r3sa3r8, r10r11, b3_rr);
      
     -- SQ 2
     b12 <= b1_rr(bits-2 downto 0) & b1_rr(bits-1);
@@ -310,11 +310,11 @@ begin
     Sub11 : SubModMersenne Generic Map (bits) Port Map (b32r16b1r22_rrrr, r18_rrrr, b32r16b1r22r18);
     Add43 : AddModMersenne Generic Map (bits) Port Map (b1r5sb1b22r15b1r21, b32r16b1r22r18, c1_rrrr);
     Add44 : AddModMersenne Generic Map (bits) Port Map (b2r6sb2_rrrr, b32r17b2r23_rrrr, b2r6sb2b32r17b2r23);
-    Add45 : AddModMersenne Generic Map (bits) Port Map (r19_rrrr, r20_rrrr, r19r20);
-    Sub12 : SubModMersenne Generic Map (bits) Port Map (b2r6sb2b32r17b2r23, r19r20, c2_rrrr);
-    Sub13 : SubModMersenne Generic Map (bits) Port Map (b3r7sb3_rrrr, r21_rrrr, b3r7sb3r21);
+    Add45 : AddModMersenne Generic Map (bits) Port Map (r19_rrrr, r21_rrrr, r19r21);
+    Sub12 : SubModMersenne Generic Map (bits) Port Map (b2r6sb2b32r17b2r23, r19r21, c2_rrrr);
+    Sub13 : SubModMersenne Generic Map (bits) Port Map (b3r7sb3_rrrr, r20_rrrr, b3r7sb3r20);
     Add46 : AddModMersenne Generic Map (bits) Port Map (r22_rrrr, r23_rrrr, r22r23);
-    Sub14 : SubModMersenne Generic Map (bits) Port Map (b3r7sb3r21, r22r23, c3_rrrr);
+    Sub14 : SubModMersenne Generic Map (bits) Port Map (b3r7sb3r20, r22r23, c3_rrrr);
     
      -- MUL
     Mul19 : MulModMersenne Generic Map (bits) Port Map (a0_rrrr, c0_rrrr, a0c0);
