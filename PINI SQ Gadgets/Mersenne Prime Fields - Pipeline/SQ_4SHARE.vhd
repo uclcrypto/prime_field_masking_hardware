@@ -63,7 +63,7 @@ architecture Behavioral of SQ_4SHARE is
                output : out UNSIGNED ((bits-1) downto 0));
     end component;
     
-    signal a02, a12, a22, a32, a12r0, a22r1, a32r2, a22r3, a32r4, a32r5, r0r1, r0s, a0r0s, r1s, a1r1s, a2r2s, a0_r, a1_r, a2_r, a3_r, r6_r, r7_r, r8_r, r9_r, r10_r, r11_r, a12r0_r, a22r1_r, a32r2_r, a22r3_r, a32r4_r, a32r5_r, a0r0s_r, a1r1s_r, a2r2s_r, a3r3s_r, a0r0sa0, a1r1sa1, a2r2sa2, a3r3sa3, a12r0a0, a22r1a0, a32r2a0, a22r3a1, a32r4a1, a32r5a2, a12r0a0r6, a22r1a0r7, a32r2a0r8, a22r3a1r9, a32r4a1r10, a32r5a2r11, r6_rr, r7_rr, r8_rr, r9_rr, r10_rr, r11_rr, a12r0a0r6_rr, a22r1a0r7_rr, a32r2a0r8_rr, a22r3a1r9_rr, a32r4a1r10_rr, a32r5a2r11_rr, a0r0sa0_rr, a1r1sa1_rr, a2r2sa2_rr, a3r3sa3_rr, a0r0sa0a12r0a0r6, a22r1a0r7a32r2a0r8, a1r1sa1a22r3a1r9, a32r4a1r10r6, a2r2sa2a32r5a2r11, r7r8, a3r3sa3r9, r10r11 : UNSIGNED (bits-1 downto 0);
+    signal a02, a12, a22, a32, a12r0, a22r1, a32r2, a22r3, a32r4, a32r5, r0r1, r0s, a0r0s, r1s, a1r1s, a2r2s, a0_r, a1_r, a2_r, a3_r, r6_r, r7_r, r8_r, r9_r, r10_r, r11_r, a12r0_r, a22r1_r, a32r2_r, a22r3_r, a32r4_r, a32r5_r, a0r0s_r, a1r1s_r, a2r2s_r, a3r3s_r, a0r0sa0, a1r1sa1, a2r2sa2, a3r3sa3, a12r0a0, a22r1a0, a32r2a0, a22r3a1, a32r4a1, a32r5a2, a12r0a0r6, a22r1a0r7, a32r2a0r8, a22r3a1r9, a32r4a1r10, a32r5a2r11, r6_rr, r7_rr, r8_rr, r9_rr, r10_rr, r11_rr, a12r0a0r6_rr, a22r1a0r7_rr, a32r2a0r8_rr, a22r3a1r9_rr, a32r4a1r10_rr, a32r5a2r11_rr, a0r0sa0_rr, a1r1sa1_rr, a2r2sa2_rr, a3r3sa3_rr, a0r0sa0a12r0a0r6, a22r1a0r7a32r2a0r8, a1r1sa1a22r3a1r9, a32r4a1r10r6, a2r2sa2a32r5a2r11, r7r9, a3r3sa3r8, r10r11 : UNSIGNED (bits-1 downto 0);
     
 begin
     
@@ -146,10 +146,10 @@ begin
     Sub4 : SubModMersenne Generic Map (bits) Port Map (a32r4a1r10_rr, r6_rr, a32r4a1r10r6);
     Add20 : AddModMersenne Generic Map (bits) Port Map (a1r1sa1a22r3a1r9, a32r4a1r10r6, b1);
     Add21 : AddModMersenne Generic Map (bits) Port Map (a2r2sa2_rr, a32r5a2r11_rr, a2r2sa2a32r5a2r11);
-    Add22 : AddModMersenne Generic Map (bits) Port Map (r7_rr, r8_rr, r7r8);
-    Sub5 : SubModMersenne Generic Map (bits) Port Map (a2r2sa2a32r5a2r11, r7r8, b2);
-    Sub6 : SubModMersenne Generic Map (bits) Port Map (a3r3sa3_rr, r9_rr, a3r3sa3r9);
+    Add22 : AddModMersenne Generic Map (bits) Port Map (r7_rr, r9_rr, r7r9);
+    Sub5 : SubModMersenne Generic Map (bits) Port Map (a2r2sa2a32r5a2r11, r7r9, b2);
+    Sub6 : SubModMersenne Generic Map (bits) Port Map (a3r3sa3_rr, r8_rr, a3r3sa3r8);
     Add23 : AddModMersenne Generic Map (bits) Port Map (r10_rr, r11_rr, r10r11);
-    Sub7 : SubModMersenne Generic Map (bits) Port Map (a3r3sa3r9, r10r11, b3);
+    Sub7 : SubModMersenne Generic Map (bits) Port Map (a3r3sa3r8, r10r11, b3);
 
 end Behavioral;
